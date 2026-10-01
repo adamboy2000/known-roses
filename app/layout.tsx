@@ -6,5 +6,5 @@ import '@fontsource/libre-baskerville/latin-400.css';
 import '@fontsource/libre-baskerville/latin-400-italic.css';
 import './globals.css';
 import './checkout.css';
-export const metadata: Metadata = { title: 'Known — Send a real rose', description: 'Roses belong in real life. So does dating. Send someone a real rose in 14 cities.' };
+export const metadata: Metadata = { title: 'Known — Send a real rose', description: 'Roses belong in real life. So does dating. Send someone a real rose in 8 cities and Orange County.' };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en"><body>{children}</body></html>; }

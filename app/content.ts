@@ -13,7 +13,8 @@ export const content = {
     { icon: 'where', title: 'Tell us', emphasis: 'where.', description: 'Add their address and keep it a surprise,\nor send them a private link and they choose.' },
     { icon: 'rose', title: 'We bring a real rose.', emphasis: '', description: 'A single stem, delivered to them.' },
   ],
-  cities: ['Austin', 'Boston', 'Chicago', 'Dallas', 'Denver', 'Los Angeles', 'Miami', 'New York', 'Phoenix', 'San Antonio', 'San Diego', 'San Francisco', 'Seattle', 'Washington, DC'],
+  cities: ['San Francisco', 'San Diego', 'Los Angeles', 'Orange County', 'Seattle', 'Chicago', 'Denver', 'Austin', 'Dallas'],
+  deliveryLine: 'Delivering in 8 cities + Orange County',
   social: [
     { label: 'Instagram', href: 'https://instagram.com/known' },
     { label: 'X', href: 'https://x.com/dateknown' },

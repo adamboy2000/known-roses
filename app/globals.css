@@ -16,6 +16,8 @@
 @media(min-width:1024px){.campaignRows{gap:64px}.campaignRow{display:grid;grid-template-columns:1fr 3fr;gap:32px;border-top:1px solid #ffffff33;padding-top:24px}.sectionLabel{padding:0;border:0}.beliefHeading{font-size:52px;line-height:56px}.bodyCopy{font-size:18px;line-height:28px;max-width:560px}.steps{display:grid;grid-template-columns:repeat(3,1fr)}.step p{white-space:normal}.step{min-height:188px}.heroLine{font-size:72px;line-height:74px}.nextSection{padding:96px 48px 112px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.manifesto{height:100svh;min-height:600px}.manifestoSticky{position:relative;height:100%}.heroLine,.heroTopBar{opacity:1!important}.scrollHint{display:none}.sequenceViewport{position:absolute;height:100%}.bgVideo{height:100%}}
 /* Keep the keyboard-only shortcut hidden even in full-section captures. */
+.details .deliveryLink{display:inline-block;margin-top:8px;text-decoration:none;max-width:none}
+.details .deliveryLink:hover{text-decoration:underline}
 .skipLink{opacity:0;pointer-events:none}.skipLink:focus{opacity:1;pointer-events:auto}
 
 /* Arqe-inspired entrance: 30px rise, staggered lines, soft ease-out. */
