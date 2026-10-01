@@ -7,9 +7,9 @@ A hobby project for sending a little thought — a real rose.
 - Cityscape alternative: https://known-roses.vercel.app/cityscape
 - Cityscape recipient preview: https://known-roses.vercel.app/cityscape/rose/claim
 
-Both options share the same composition, camera motion and checkout. The cityscape uses the approved darker evening lighting, with a muted sunset and cooler foliage. The original sunset remains the default; the first cityscape artwork is also preserved. Delivery locations are San Francisco, San Diego, Los Angeles, Orange County, Seattle, Chicago, Denver, Austin and Dallas.
+Both options share the same composition, camera motion and checkout. The cityscape uses the approved night lighting: an almost-black sky, a faint trace of dusk and deeper crimson petals with cool ambient reflections. The original sunset remains the default; first cityscape and evening artwork are also preserved. Delivery locations are San Francisco, San Diego, Los Angeles, Orange County, Seattle, Chicago, Denver, Austin and Dallas.
 
-Evening artwork and prompts are in `artwork/cityscape-evening-*`; runtime assets are in `public/rose-runtime/cityscape-evening/`. Export with `python3 scripts/build_cityscape_assets.py --evening`.
+Night artwork and prompts are in `artwork/cityscape-night-*`; runtime assets are in `public/rose-runtime/cityscape-night/`. Export with `python3 scripts/build_cityscape_assets.py --night`.
 
 ## Run locally
 
