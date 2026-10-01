@@ -12,7 +12,8 @@ export type RoseBackdrop = 'sunset' | 'cityscape';
 export function getRoseAssets(backdrop: RoseBackdrop) {
   return backdrop === 'cityscape' ? {
     ...roseAssets,
-    background: '/rose-runtime/cityscape/background.webp',
-    poster: '/rose-runtime/cityscape/poster.webp',
+    background: '/rose-runtime/cityscape-evening/background.webp',
+    foreground: '/rose-runtime/cityscape-evening/foreground.webp',
+    poster: '/rose-runtime/cityscape-evening/poster.webp',
   } : roseAssets;
 }
