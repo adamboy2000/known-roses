@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import { content } from '../app/content';
-import { roseAssets } from '../lib/rose-assets';
+import { useRoseAssets, useRoseRoutes } from './RoseAssetsProvider';
 import { validateAddress, validateContact } from '../lib/rose-order';
 import { readRecipientPreview } from '../lib/recipient-preview';
 import SmsConsent from './SmsConsent';
@@ -13,6 +13,8 @@ type Stage = 'welcome' | 'delivery' | 'complete';
 const autocomplete: Record<string, string> = { first: 'given-name', last: 'family-name', phone: 'tel', email: 'email', street: 'street-address', zip: 'postal-code' };
 
 export default function RoseClaim() {
+  const roseAssets = useRoseAssets();
+  const routes = useRoseRoutes();
   const [details, setDetails] = useState<Claim>(empty);
   const [errors, setErrors] = useState<Partial<Record<keyof Claim, string>>>({});
   const [consent, setConsent] = useState(false);
@@ -73,7 +75,7 @@ export default function RoseClaim() {
   };
   const formStage = stage === 'delivery';
   return <main className="claimPage recipientPage">
-    <a href="/" className="recipientBrand" aria-label="Known home"><KnownLogo/></a>
+    <a href={routes.home} className="recipientBrand" aria-label="Known home"><KnownLogo/></a>
     <section className="claimCard recipientCard" aria-labelledby="claim-title" data-stage={stage}>
       {formStage && <button className="checkoutBack" aria-label="Back" onClick={() => go('welcome')}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m12 4-6 6 6 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>}
       <div key={stage} className="recipientStage">

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, type ReactNode } from 'react';
-import { roseAssets } from '../lib/rose-assets';
+import { useRoseAssets } from './RoseAssetsProvider';
 
 const BG_WIDTH = 1920 * 1.18;
 const BG_HEIGHT = BG_WIDTH * 941 / 1672;
@@ -19,6 +19,7 @@ const opening = camera(0);
  * Transforms run on composited image layers, avoiding 82 downloads and decodes.
  */
 export default function RoseScene({ children }: { children: ReactNode }) {
+  const roseAssets = useRoseAssets();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLImageElement>(null);

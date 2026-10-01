@@ -2,15 +2,17 @@
 import { useEffect, useRef, useState } from 'react';
 import type { RoseOrder } from '../lib/rose-order';
 import { createRecipientPreview } from '../lib/recipient-preview';
+import { useRoseRoutes } from './RoseAssetsProvider';
 
 export default function RoseInvite({ order }: { order: RoseOrder }) {
+  const routes = useRoseRoutes();
   const [link, setLink] = useState('');
   const [apple, setApple] = useState(false);
   const [notice, setNotice] = useState<{ text: string } | null>(null);
   const toastRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // Demo links deliberately contain no contact details or address data.
-    setLink(`${location.origin}/rose/claim${createRecipientPreview(order)}`);
+    setLink(`${location.origin}${routes.claim}${createRecipientPreview(order)}`);
     setApple(/Mac|iPhone|iPad|iPod/.test(navigator.platform));
   }, []);
   useEffect(() => {

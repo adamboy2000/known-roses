@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type FormEvent, type InputHTMLAttributes } from 'react';
 import { content } from '../app/content';
 import { emptyOrder, validateOrder, ROSE_PRICE, type RoseOrder, type OrderErrors } from '../lib/rose-order';
-import { roseAssets } from '../lib/rose-assets';
+import { useRoseAssets } from './RoseAssetsProvider';
 import RoseConfirmation, { prepareConfirmation } from './RoseConfirmation';
 import SmsConsent from './SmsConsent';
 import RoseInvite from './RoseInvite';
@@ -39,6 +39,7 @@ function SelectionMark() {
 }
 
 function RoseCheckout({ request, onDismiss }: { request: OpenRequest; onDismiss: () => void }) {
+  const roseAssets = useRoseAssets();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
