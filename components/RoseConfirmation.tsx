@@ -1,7 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useRef, type RefObject } from 'react';
-import { roseAssets } from '../lib/rose-assets';
+import { useRoseAssets } from './RoseAssetsProvider';
 import { ROSE_PRICE, type RoseOrder } from '../lib/rose-order';
 
 let motion: typeof import('gsap').gsap | undefined;
@@ -13,6 +13,7 @@ export function prepareConfirmation() {
 }
 
 export default function RoseConfirmation({ order, titleRef }: { order: RoseOrder; titleRef: RefObject<HTMLHeadingElement | null> }) {
+  const roseAssets = useRoseAssets();
   const rootRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
