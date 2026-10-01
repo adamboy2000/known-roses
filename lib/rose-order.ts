@@ -21,7 +21,7 @@ export function validateContact(phone: string, email: string) {
 }
 export function validateAddress(order: Pick<RoseOrder, 'city' | 'street' | 'zip'>): OrderErrors {
   const errors: OrderErrors = {};
-  if (!content.cities.includes(order.city)) errors.city = 'Choose one of our 14 delivery cities.';
+  if (!content.cities.includes(order.city)) errors.city = 'Choose one of our delivery locations.';
   if (!order.street.trim()) errors.street = 'Add a street address.';
   if (!/^\d{5}$/.test(order.zip.trim())) errors.zip = 'Add a five-digit ZIP code.';
   return errors;

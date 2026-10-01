@@ -7,3 +7,12 @@ export const roseAssets = {
   foreground: `${directory}/foreground.webp`,
   background: '/rose-runtime/background.webp',
 };
+
+export type RoseBackdrop = 'sunset' | 'cityscape';
+export function getRoseAssets(backdrop: RoseBackdrop) {
+  return backdrop === 'cityscape' ? {
+    ...roseAssets,
+    background: '/rose-runtime/cityscape/background.webp',
+    poster: '/rose-runtime/cityscape/poster.webp',
+  } : roseAssets;
+}
