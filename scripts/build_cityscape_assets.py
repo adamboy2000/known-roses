@@ -1,5 +1,5 @@
 """Export cityscape layers and a matching poster using the existing camera.
---evening exports the approved darker option without replacing prior artwork.
+--evening and --night export the approved options without replacing prior artwork.
 """
 from pathlib import Path
 import argparse, hashlib, json
@@ -8,16 +8,19 @@ import numpy as np
 
 root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--evening', action='store_true')
+lighting = parser.add_mutually_exclusive_group()
+lighting.add_argument('--evening', action='store_true')
+lighting.add_argument('--night', action='store_true')
 args = parser.parse_args()
-name = 'cityscape-evening' if args.evening else 'cityscape'
+tone = 'night' if args.night else 'evening' if args.evening else None
+name = f'cityscape-{tone}' if tone else 'cityscape'
 out = root / 'public/rose-runtime' / name
 out.mkdir(parents=True, exist_ok=True)
-background_source = 'artwork/cityscape-evening-background.png' if args.evening else 'artwork/cityscape-background.png'
+background_source = f'artwork/{name}-background.png'
 background = Image.open(root / background_source).convert('RGBA').resize((1672, 941), Image.Resampling.LANCZOS)
 background.convert('RGB').save(out / 'background.webp', 'WEBP', quality=90, method=6)
-if args.evening:
-    foreground = Image.open(root / 'artwork/cityscape-evening-foreground.png').convert('RGBA')
+if tone:
+    foreground = Image.open(root / f'artwork/{name}-foreground.png').convert('RGBA')
     assert foreground.getextrema()[3] == (0, 255), 'Foreground must retain real transparency.'
     foreground = foreground.convert('RGBa').resize((1448, 1086), Image.Resampling.LANCZOS).convert('RGBA')
     foreground.save(out / 'foreground.webp', 'WEBP', quality=92, method=6)

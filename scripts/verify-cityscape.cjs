@@ -12,9 +12,9 @@ const cities = ['San Francisco', 'San Diego', 'Los Angeles', 'Orange County', 'S
         await page.goto(base + path, { waitUntil: 'networkidle' });
         await page.waitForSelector('.roseStage[data-ready=true]');
         const city = path === '/cityscape';
-        const background = city ? '/rose-runtime/cityscape-evening/background.webp' : '/rose-runtime/background.webp';
-        const foreground = city ? '/rose-runtime/cityscape-evening/foreground.webp' : '/rose-runtime/red/foreground.webp';
-        const poster = city ? '/rose-runtime/cityscape-evening/poster.webp' : '/rose-runtime/red/poster.webp';
+        const background = city ? '/rose-runtime/cityscape-night/background.webp' : '/rose-runtime/background.webp';
+        const foreground = city ? '/rose-runtime/cityscape-night/foreground.webp' : '/rose-runtime/red/foreground.webp';
+        const poster = city ? '/rose-runtime/cityscape-night/poster.webp' : '/rose-runtime/red/poster.webp';
         assert.equal(await page.locator('.roseBackground').getAttribute('src'), background);
         assert.equal(await page.locator('.roseForeground').getAttribute('src'), foreground);
         assert.equal(await page.locator('.rosePoster').getAttribute('src'), poster);
@@ -46,6 +46,6 @@ const cities = ['San Francisco', 'San Diego', 'Los Angeles', 'Orange County', 'S
     const reduced = await browser.newPage({ reducedMotion: 'reduce' });
     await reduced.goto(base + '/cityscape');
     assert.equal(await reduced.locator('.roseStage').evaluate(e => getComputedStyle(e).display), 'none');
-    assert.equal(await reduced.locator('.rosePoster').getAttribute('src'), '/rose-runtime/cityscape-evening/poster.webp');
+    assert.equal(await reduced.locator('.rosePoster').getAttribute('src'), '/rose-runtime/cityscape-night/poster.webp');
   } finally { await browser.close(); }
 })().catch(e => { console.error(e); process.exitCode = 1; });
