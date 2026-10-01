@@ -1,0 +1,237 @@
+/* Compact checkout: filled surfaces and a single, quiet column. */
+:root{--glass-surface:rgb(255 255 255 / 9%);--glass-border:rgb(255 255 255 / 16%);--muted:#969696;--focus:#dfb5ab;--modal-surface:#171717}
+button,input,select,textarea{font-family:var(--sans)}
+button{cursor:pointer}button:disabled{cursor:wait;opacity:.55}
+button:focus-visible{outline:2px solid var(--focus);outline-offset:5px}
+.roseDialog{width:min(520px,calc(100% - 40px));max-width:none;max-height:calc(100dvh - 40px);padding:0;border:1px solid rgb(255 255 255 / 9%);border-radius:24px;background:var(--modal-surface);color:white;box-shadow:0 24px 100px rgb(0 0 0 / 45%);overflow:hidden;transform-origin:center;overscroll-behavior:contain}
+.roseDialog::backdrop{background:rgb(0 0 0 / 68%);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:checkoutBackdropIn .4s ease both}
+@keyframes checkoutBackdropIn{from{background:rgb(0 0 0 / 0%);backdrop-filter:blur(0)}to{background:rgb(0 0 0 / 68%);backdrop-filter:blur(12px)}}
+.checkoutShell{position:relative;display:flex;flex-direction:column;max-height:calc(100dvh - 42px)}
+.checkoutTop{display:flex;align-items:center;gap:16px;padding:24px 72px 16px 28px;flex:none}
+.checkoutTop h2{margin:0;font-family:var(--sans);font-size:22px;line-height:30px;font-weight:500;letter-spacing:-.5px;outline:none}
+.checkoutClose{position:absolute;top:20px;right:20px;z-index:2;display:grid;place-items:center;border:0;border-radius:50%;width:36px;height:36px;padding:0;background:transparent;color:#ffffffb3;flex:none}
+.checkoutClose:hover{background:var(--glass-surface);color:white}
+.checkoutShell[data-stage=details] .checkoutClose{background:rgb(0 0 0 / 30%);color:#ffffffe6;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.checkoutShell[data-stage=details] .checkoutClose:hover{background:rgb(0 0 0 / 50%);color:white}
+.checkoutScroll{min-height:0;padding:8px 28px 4px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#444 transparent}
+.checkoutScrollDetails{padding:0;scroll-padding-top:72px}
+.checkoutImageBar{position:sticky;top:0;z-index:1;display:flex;align-items:center;height:64px;padding:0 72px 0 28px;margin-bottom:-64px;pointer-events:none;transition:background .2s}
+.checkoutImageBar span{opacity:0;font-size:14px;line-height:22px;font-weight:500;transition:opacity .2s}
+.checkoutScrollDetails[data-intro-scrolled=true] .checkoutImageBar{background:var(--modal-surface)}
+.checkoutScrollDetails[data-intro-scrolled=true] .checkoutImageBar span{opacity:1}
+.checkoutHero{position:relative;isolation:isolate;aspect-ratio:26/11;overflow:hidden;background:var(--modal-surface);flex:none}
+.checkoutHero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom}
+.checkoutHeroBlur{position:absolute;inset:0;z-index:1;pointer-events:none}
+.checkoutHeroBlur span{position:absolute;inset:0;-webkit-mask-image:var(--blur-mask);mask-image:var(--blur-mask);-webkit-backdrop-filter:blur(var(--blur-radius));backdrop-filter:blur(var(--blur-radius))}
+.checkoutHeroBlur span:nth-child(1){--blur-radius:1px;--blur-mask:linear-gradient(180deg,transparent 42%,#000 62%)}
+.checkoutHeroBlur span:nth-child(2){--blur-radius:3px;--blur-mask:linear-gradient(180deg,transparent 57%,#000 75%)}
+.checkoutHeroBlur span:nth-child(3){--blur-radius:6px;--blur-mask:linear-gradient(180deg,transparent 70%,#000 90%)}
+.checkoutHeroBlur span:nth-child(4){--blur-radius:12px;--blur-mask:linear-gradient(180deg,transparent 82%,#000 100%)}
+.checkoutHero::after{content:'';position:absolute;inset:0 0 -1px;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent 45%,rgb(23 23 23 / 25%) 65%,rgb(23 23 23 / 78%) 87%,var(--modal-surface) 98%)}
+.checkoutIntro{display:flex;flex-direction:column;align-items:center;gap:8px;padding:28px 28px 30px;text-align:center}
+.checkoutIntro h2{font-family:var(--serif);font-size:38px;line-height:46px;font-weight:400;letter-spacing:-1px;outline:none}
+.checkoutIntro p{font-size:13px;line-height:20px;color:var(--muted)}
+.checkoutDetailsForm{padding:0 28px 4px}
+.checkoutFields{display:flex;flex-direction:column;gap:24px;min-width:0}
+.checkoutSection{border:0;padding:0;margin:0;min-width:0}
+.checkoutSection legend{font-size:13px;line-height:20px;font-weight:500;margin-bottom:10px;padding:0}
+.checkoutFieldRow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.checkoutField{display:flex;flex-direction:column;gap:8px;min-width:0}
+.checkoutField label{font-size:13px;line-height:20px;color:#ffffffe6;display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between}
+.checkoutField label span{color:var(--muted);font-size:11px}
+.checkoutField input,.checkoutField select,.checkoutField textarea{width:100%;border:0;border-radius:12px;background:var(--glass-surface);padding:12px 14px;color:white;outline:none;font-size:14px;line-height:22px;transition:background .2s}
+.checkoutField input::placeholder,.checkoutField textarea::placeholder{color:#ffffff59}
+.checkoutField input:focus,.checkoutField select:focus,.checkoutField textarea:focus{background-color:rgb(255 255 255 / 14%)}
+.checkoutField:focus-within label{color:white}
+.checkoutField [aria-invalid=true]{background-color:rgb(220 160 154 / 12%)}
+.checkoutField select{appearance:auto;color-scheme:dark}.checkoutField select option{background:#232323;color:white}
+.checkoutField textarea{resize:vertical;min-height:80px;max-height:180px}
+.fieldError,.paymentError{font-size:12px;line-height:18px;color:#e8b4ac}
+.fieldHint{font-size:11px;line-height:18px;color:var(--muted)}
+.deliveryChoice,.testCard{position:relative;display:flex;align-items:center;gap:12px;padding:14px 16px;margin-top:8px;border:0;border-radius:14px;background:rgb(255 255 255 / 4%);cursor:pointer;transition:background .2s}
+.deliveryChoice.selected,.testCard.selected{background:var(--glass-surface)}
+.deliveryChoice:hover,.testCard:hover{background:rgb(255 255 255 / 12%)}
+.deliveryChoice input,.testCard input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.deliveryChoice:has(input:focus-visible),.testCard:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:3px}
+.deliveryChoice>img{width:16px;height:16px;opacity:.9;flex:none}
+.deliveryChoice>span:not(.choiceCheck),.testCard>span:not(.cardMark):not(.choiceCheck):not(.walletMark){display:flex;flex-direction:column;gap:3px;min-width:0}
+.deliveryChoice strong,.testCard strong{font-size:13px;line-height:20px;font-weight:500}
+.deliveryChoice small,.testCard small{font-size:11px;line-height:18px;color:var(--muted)}
+.choiceCheck{display:grid;place-items:center;width:20px;height:20px;border:0;border-radius:50%;margin-left:auto;flex:none;background:rgb(255 255 255 / 12%);color:#171717}
+.choiceCheck svg{width:18px;height:18px;opacity:0}.selected .choiceCheck{background:#f4f4f4}.selected .choiceCheck svg{opacity:1}
+.checkoutAddress{display:flex;flex-direction:column;gap:16px;animation:checkoutAddressIn .3s ease both}
+@keyframes checkoutAddressIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.checkoutFoot{display:flex;flex-direction:column;align-items:center;gap:8px;flex:none;padding:24px 28px;background:var(--modal-surface)}
+.checkoutPrimary{min-height:44px;height:auto;padding:11px 20px;gap:10px;width:100%;max-width:none;background:#f4f4f4;color:#171717;font-size:14px;font-weight:500;letter-spacing:-.2px}
+.checkoutPrimary:hover{background:#ddd}
+.checkoutFootnote{font-size:11px;line-height:18px;color:var(--muted)}
+.checkoutTextButton{border:0;background:none;padding:4px 0;color:#ffffffb3;font-size:12px;margin-left:auto;text-decoration:underline;text-underline-offset:3px}
+.checkoutTextButton:hover{color:white}
+.orderReview{display:flex;align-items:flex-start;gap:16px;font-size:13px;line-height:22px;color:var(--muted)}
+.orderReview p{overflow-wrap:anywhere;min-width:0}
+.cardMark{font-size:10px;font-style:italic;font-weight:500;letter-spacing:.6px;border:0;border-radius:5px;background:rgb(255 255 255 / 9%);padding:7px 6px;flex:none}
+.checkoutTotal{display:flex;justify-content:space-between;gap:16px;padding:4px 0;font-size:14px;line-height:22px}
+.checkoutTotal strong{font-weight:500}
+.paymentError{padding:12px 14px;border:0;border-radius:12px;background:rgb(220 160 154 / 7%)}
+.checkoutSpinner{width:15px;height:15px;border:1.5px solid #17171740;border-top-color:#171717;border-radius:50%;animation:checkoutSpin .8s linear infinite}
+@keyframes checkoutSpin{to{transform:rotate(360deg)}}
+.checkoutScrollComplete{padding:32px 28px 4px}
+.checkoutComplete{display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
+.confirmationRose{position:relative;width:240px;height:190px;flex:none;overflow:hidden;margin-bottom:-20px;background:radial-gradient(ellipse at 50% 44%,rgb(130 31 37 / 12%),transparent 67%);-webkit-mask-image:linear-gradient(#000 52%,transparent 100%);mask-image:linear-gradient(#000 52%,transparent 100%)}
+.confirmationRose img{position:absolute;top:-28px;left:calc(50% - 240px);width:480px;height:360px;max-width:none;-webkit-mask-image:linear-gradient(90deg,transparent 25%,#000 32%,#000 68%,transparent 75%);mask-image:linear-gradient(90deg,transparent 25%,#000 32%,#000 68%,transparent 75%)}
+.confirmationCopy{display:flex;flex-direction:column;gap:12px;max-width:100%;overflow-wrap:anywhere}
+.confirmationCopy h2{font-family:var(--serif);font-size:34px;line-height:42px;font-weight:400;letter-spacing:-1px;outline:none}
+.confirmationLine{display:block}
+.confirmationCopy p{font-size:14px;line-height:22px;color:var(--muted)}
+.confirmationReceipt{width:100%;padding:16px;border-radius:14px;background:rgb(255 255 255 / 4%);text-align:left}
+.confirmationReceipt>div{display:flex;justify-content:space-between;gap:16px;font-size:13px;line-height:20px}
+.confirmationReceipt strong{font-weight:500;white-space:nowrap}
+.confirmationReceipt p{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:11px;line-height:18px;color:var(--muted)}
+.confirmationReceipt img{width:13px;height:13px;opacity:.6;flex:none}
+@media(max-width:600px){
+  .roseDialog{width:calc(100% - 24px);max-height:calc(100dvh - 24px)}
+  .checkoutShell{max-height:calc(100dvh - 26px)}
+  .checkoutTop{padding:20px 64px 14px 22px}.checkoutTop h2{font-size:21px;line-height:28px}.checkoutClose{top:16px;right:16px}
+  .checkoutScroll{padding:8px 22px 4px}.checkoutScrollDetails{padding:0}.checkoutFoot{padding:22px}
+  .checkoutImageBar{padding-left:22px}.checkoutIntro{padding:24px 22px 26px}.checkoutIntro h2{font-size:34px;line-height:42px;letter-spacing:-.8px}.checkoutDetailsForm{padding:0 22px 4px}
+  .checkoutFieldRow{gap:10px}.checkoutField input,.checkoutField select,.checkoutField textarea{font-size:16px;padding:12px}
+  .checkoutScrollComplete{padding:28px 22px 4px}.confirmationCopy h2{font-size:30px;line-height:38px;letter-spacing:-.8px}
+}
+@media(max-width:360px){.checkoutFieldRow{grid-template-columns:1fr}.confirmationCopy h2{font-size:27px;line-height:35px}}
+@media(max-height:650px){.checkoutScrollComplete{padding-top:20px}.checkoutComplete{gap:20px}.confirmationRose{width:200px;height:150px}.confirmationRose img{top:-24px;left:calc(50% - 200px);width:400px;height:300px}}
+
+.contactSection{display:flex;flex-direction:column;gap:14px}
+.contactSection legend{margin-bottom:14px}
+.contactHint{font-size:12px;line-height:18px;color:var(--muted)}
+.smsConsent{display:flex;align-items:flex-start;gap:10px;font-size:11px;line-height:18px;color:var(--muted);cursor:pointer}
+.smsConsent input{appearance:none;width:18px;height:18px;flex:none;margin:2px 0 0;border:0;border-radius:5px;background:rgb(255 255 255 / 14%);cursor:pointer}
+.smsConsent input:checked{background:#f4f4f4 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m5 10 3 3 7-7' fill='none' stroke='%23171717' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.smsConsent input:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.testCard>.walletMark{display:grid;flex:none;place-items:center;min-width:40px;height:30px;border-radius:6px;background:#f4f4f4;color:#171717;font-size:13px;font-weight:500}
+.checkoutSecondary{display:inline-flex;justify-content:center;align-items:center;min-height:36px;padding:6px 12px;border:0;border-radius:12px;background:transparent;color:#ddd;font-size:12px;text-decoration:none;cursor:pointer}
+.checkoutSecondary:hover{background:var(--glass-surface);color:white}
+.checkoutConfirmationFoot .checkoutSecondary{font-size:14px}
+.checkoutFootnote{text-align:center}
+.inviteContent{display:flex;flex-direction:column;gap:18px;padding-top:12px}
+.inviteContent>p{font-size:14px;line-height:22px}.inviteContent>p span{color:var(--muted)}
+.inviteContent .fieldHint{font-size:11px;line-height:18px}
+.inviteTo{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:14px 16px;border-radius:14px;background:rgb(255 255 255 / 4%);font-size:13px;overflow-wrap:anywhere}
+.inviteTo>span{color:var(--muted)}.inviteTo strong{font-weight:400}.inviteTo small{grid-column:2;color:var(--muted)}
+.inviteMessage{font-size:12px;line-height:20px}.inviteMessage textarea{font-size:13px;line-height:21px;min-height:145px;margin-top:8px;resize:none}
+.inviteActions{display:flex;flex-direction:column;gap:8px}
+.inviteSendActions{display:flex;gap:10px}.inviteSendActions>.checkoutPrimary{flex:1;min-width:0;width:auto;padding-inline:12px}
+.claimPage{min-height:100svh;padding:40px 12px;background:#000}
+.claimCard{position:relative;width:min(520px,100%);margin:auto;background:var(--modal-surface);border:1px solid rgb(255 255 255 / 9%);border-radius:24px;overflow:hidden;color:white}
+.claimCard .checkoutClose{font-size:28px;text-decoration:none;background:#0005;backdrop-filter:blur(10px)}
+.claimCard h1{font:400 38px/46px var(--serif);letter-spacing:-1px;outline:none}
+.claimForm,.claimComplete{display:flex;flex-direction:column;gap:18px;padding:0 28px 28px}
+.claimDemo{font-size:11px;line-height:18px;color:var(--muted)}
+.claimComplete{text-align:center;font-size:14px;line-height:22px}
+@media(max-width:600px){.claimPage{padding-top:12px}.claimForm,.claimComplete{padding:0 22px 22px}.claimCard h1{font-size:34px;line-height:42px}.contactSection .contactMethods{grid-template-columns:1fr}}
+
+/* One decision at a time; progress and navigation stay quiet. */
+.checkoutBack{position:absolute;top:20px;left:20px;z-index:2;display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:transparent;color:#ffffffb3}
+.checkoutBack:hover{background:var(--glass-surface);color:white}
+.checkoutTopWithBack{padding-left:68px}
+.checkoutProgress{list-style:none;display:flex;gap:10px;margin:0 0 24px;padding:0;font-size:11px;line-height:18px;color:#777}
+.checkoutProgress li{flex:1;min-width:0;text-align:center;display:flex;flex-direction:column;gap:6px}
+.checkoutProgress li>span{height:4px;border-radius:3px;background:#ffffff1a}
+.checkoutProgress li[aria-current=step]{color:#f4f4f4}.checkoutProgress li[aria-current=step]>span{background:#f4f4f4}
+.checkoutProgress li[data-complete=true]>span{background:#ffffff73}
+.checkoutScrollDetails>.checkoutProgress{margin-left:28px;margin-right:28px}
+.checkoutStepHero{height:clamp(120px,19svh,168px);aspect-ratio:auto}
+.checkoutStepIntro{padding-top:12px;padding-bottom:20px}.checkoutStepIntro h2{font-size:34px;line-height:42px}
+.checkoutStepIntroCompact{padding-top:64px}
+.checkoutSrOnly{position:absolute;width:1px;height:1px;padding:0!important;margin:-1px!important;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.checkoutStepForm{animation:checkoutStepIn .28s ease-out both}
+@keyframes checkoutStepIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.checkoutBack{top:16px;left:16px}.checkoutTopWithBack{padding-left:62px}.checkoutScrollDetails>.checkoutProgress{margin-left:22px;margin-right:22px}.checkoutStepIntro{padding-top:8px;padding-bottom:20px}.checkoutStepIntroCompact{padding-top:60px}.checkoutStepIntro h2{font-size:32px;line-height:40px}}
+
+/* Native city menu, with an inset arrow that stays visible on focus and errors. */
+.checkoutField select{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m5 7.5 5 5 5-5' fill='none' stroke='%23b5b5b5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:18px 18px;background-position:right 16px center}
+.checkoutFoot{position:relative;z-index:1}
+.checkoutFoot::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:40px;pointer-events:none;background:linear-gradient(180deg,rgb(23 23 23 / 0%),rgb(23 23 23 / 30%) 35%,rgb(23 23 23 / 80%) 72%,var(--modal-surface));opacity:0;transition:opacity .18s ease}
+.checkoutShell[data-scroll-below=true] .checkoutFoot::before{opacity:1}
+.testCard>.walletMark{width:48px;height:31px;min-width:48px;padding:0;background:transparent;border-radius:0}
+.walletMark img{width:48px;height:31px;object-fit:contain}
+.cardMark{display:grid;place-items:center;width:48px;height:31px;padding:0;background:#fff;border-radius:4px}
+.cardMark img{width:48px;height:31px;object-fit:contain}
+@media(forced-colors:active){.checkoutField select{appearance:auto;background-image:none;padding-right:12px}}
+
+/* Leave breathing room before the sticky action and avoid fades on short steps. */
+.checkoutDetailsForm{padding-bottom:20px}
+.checkoutShell[data-stage=complete] .checkoutFoot::before{display:none}
+.confirmationLine + .confirmationLine{margin-top:-4.2px}
+.inviteSendActions{gap:8px}
+.inviteSendActions>.checkoutPrimary{gap:6px;white-space:nowrap;padding-inline:8px;font-size:13px}
+.inviteSendActions svg{flex:none}
+.checkoutShareFoot .checkoutSecondary{font-size:14px;min-height:44px}
+.roseDialog:has(.checkoutShell[data-stage=share]){max-height:calc(100dvh - 144px)}
+.checkoutShell[data-stage=share]{max-height:calc(100dvh - 146px)}
+.inviteToast{position:fixed;inset:auto;margin:0;left:50%;transform:translateX(-50%);max-width:calc(100vw - 32px);width:max-content;padding:10px 18px;border:1px solid #ffffff12;border-radius:999px;background:#292929;color:#f4f4f4;font:400 13px/20px var(--sans);box-shadow:0 6px 24px #0005;pointer-events:none;text-align:center}
+.inviteToast:popover-open{animation:inviteToastInOut 3.2s ease both}
+@keyframes inviteToastInOut{0%{opacity:0;translate:0 6px}10%,82%{opacity:1;translate:0 0}100%{opacity:0;translate:0 2px}}
+@media(prefers-reduced-motion:reduce){.inviteToast:popover-open{animation:none}}
+@media(max-width:360px){.inviteSendActions{flex-wrap:wrap}.inviteSendActions>.checkoutPrimary{flex-basis:calc(50% - 4px)}.inviteSendActions>.checkoutPrimary:last-child{flex-basis:100%}}
+@media(max-height:740px){
+  .checkoutScrollComplete{padding-top:24px}
+  .checkoutComplete{gap:18px}
+  .confirmationRose{height:140px;width:200px}
+  .confirmationRose img{width:400px;height:300px;left:calc(50% - 200px);top:-24px}
+  .checkoutConfirmationFoot{padding-top:16px;padding-bottom:16px}
+}
+@media(max-width:600px){.confirmationLine + .confirmationLine{margin-top:-3.8px}}
+@media(max-width:360px){.confirmationLine + .confirmationLine{margin-top:-3.5px}.inviteSendActions>.checkoutPrimary{font-size:12px;gap:4px;padding-inline:6px}.inviteSendActions svg{width:14px;height:14px}}
+
+/* A gentle zoom-out keeps the first checkout image covering its frame. */
+@media(prefers-reduced-motion:no-preference){
+  .checkoutStepHero>img{animation:checkoutRoseSettle 1.5s .18s cubic-bezier(.22,1,.36,1) both}
+}
+@keyframes checkoutRoseSettle{from{transform:scale(1.08)}to{transform:scale(1)}}
+
+.recipientPage{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 16px;background:radial-gradient(ellipse at 50% 12%,#32161755,transparent 55%),#000}
+.recipientBrand{display:block;margin-bottom:28px}
+.recipientCard{width:min(520px,100%);margin:0;box-shadow:0 24px 100px #0006}
+.recipientReveal{position:relative;height:260px;isolation:isolate;overflow:hidden;background:#171717;mask-image:linear-gradient(#000 62%,transparent 100%)}
+.recipientReveal img{position:absolute;max-width:none;object-fit:cover}
+.recipientSky{inset:0;width:100%;height:100%;opacity:.6}
+.recipientRose{width:640px;height:480px;left:calc(50% - 320px);top:-48px}
+.recipientIntro{padding:0 28px 24px;gap:14px}
+.recipientIntro h1{font-size:38px;line-height:1.18;max-width:100%;overflow-wrap:anywhere}
+.recipientIntro p{max-width:310px;line-height:22px;font-size:14px;text-wrap:pretty}
+.recipientWelcome{display:flex;flex-direction:column;gap:14px;padding:0 28px 28px;text-align:center}
+.recipientIntroForm{padding-top:70px}
+.recipientProgress{margin:0 28px 28px}
+.recipientCard .claimForm{gap:20px}
+.recipientCard .claimForm>.checkoutPrimary{margin-top:4px}
+.recipientIdentity{display:flex;flex-direction:column;gap:16px;padding:18px;border-radius:16px;background:rgb(255 255 255 / 4%)}
+.recipientIdentityHeading{display:flex;align-items:center;gap:12px}
+.recipientIdentityHeading h2{font:500 13px/20px var(--sans);margin:0}
+.recipientIdentitySummary{display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:20px;overflow-wrap:anywhere}
+.recipientIdentitySummary strong{font-weight:500}.recipientIdentitySummary span{color:var(--muted)}
+.recipientAddressFields{display:flex;flex-direction:column;gap:20px}
+.recipientRevealSmall{height:195px}
+.recipientRevealSmall .recipientRose{width:520px;height:390px;left:calc(50% - 260px);top:-38px}
+.recipientComplete{gap:20px}
+.recipientAddress{display:flex;gap:12px;align-items:flex-start;padding:18px;border-radius:16px;background:var(--glass-surface);text-align:left;font-size:13px;line-height:21px}
+.recipientAddress>img{flex:none;margin-top:2px}.recipientAddress>div{min-width:0;overflow-wrap:anywhere}.recipientAddress strong{font-weight:500}.recipientAddress p{color:var(--muted)}
+.recipientGive{text-align:center;padding:30px 0 0;display:flex;flex-direction:column;align-items:center;gap:16px}
+.recipientGive p{font-size:13px;line-height:22px;color:#ddd}.recipientGive p span{color:var(--muted)}
+.recipientGive .button{font-size:13px;min-height:42px;height:auto;padding:10px 22px;gap:8px}
+@media(prefers-reduced-motion:no-preference){
+  .recipientStage{animation:recipientContentIn .55s ease both}
+  .recipientRose{animation:recipientRoseRise 1.8s cubic-bezier(.22,1,.36,1) both}
+  .recipientSky{animation:recipientSkyIn 2s ease both}
+  .recipientCard[data-stage=welcome] .recipientIntro{animation:recipientContentIn .9s .3s both}
+  .recipientWelcome{animation:recipientContentIn .8s .5s both}
+}
+@keyframes recipientRoseRise{from{opacity:0;transform:translateY(40px) rotate(-3deg) scale(.96)}to{opacity:1;transform:translateY(0) rotate(0) scale(1)}}
+@keyframes recipientSkyIn{from{opacity:0;transform:scale(1.04)}to{opacity:.6;transform:scale(1)}}
+@keyframes recipientContentIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+  .recipientPage{padding:24px 12px}.recipientBrand{margin-bottom:22px}
+  .recipientReveal{height:230px}.recipientRose{width:560px;height:420px;left:calc(50% - 280px);top:-36px}
+  .recipientIntro{padding:0 22px 24px}.recipientIntroForm{padding-top:66px}.recipientIntro h1{font-size:32px}
+  .recipientWelcome{padding:0 22px 24px}.recipientProgress{margin:0 22px 24px}
+  .recipientRevealSmall{height:180px}.recipientRevealSmall .recipientRose{top:-38px}
+}

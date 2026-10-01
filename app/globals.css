@@ -1,0 +1,62 @@
+@font-face{font-family:'Rhymes';src:local('Rhymes Text Regular'),local('RyhmesText-Regular');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Rhymes';src:local('Rhymes Text Light'),local('RyhmesText-Light');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Rhymes';src:local('Rhymes Text Light Italic'),local('RyhmesText-LightItalic');font-weight:300 400;font-style:italic;font-display:swap}
+@font-face{font-family:'Switzer';src:local('Switzer Variable Regular');font-weight:100 900;font-style:normal;font-display:swap}
+:root{--serif:'Rhymes','Libre Baskerville',Georgia,serif;--sans:Inter,Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html{background:#000;scroll-behavior:smooth;overscroll-behavior:none}body{margin:0;color:white;background:#000;font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}p,h1,h2,h3{margin:0}img{display:block}a:focus-visible{outline:2px solid #dfb5ab;outline-offset:6px}section{scroll-margin-top:24px}
+.skipLink{position:fixed;z-index:20;top:12px;left:12px;padding:12px 18px;background:white;color:black;transform:translateY(-200%)}.skipLink:focus{transform:translateY(0)}
+/* Preserve the rose canvas's original wrapper geometry and sticky release point. */
+.scrollSequence{position:relative;isolation:isolate}.bgVideoHolder{position:absolute;inset:0;z-index:-1}.sequenceViewport{position:sticky;top:0;width:100%;height:100vh;height:100lvh;background-size:cover;background-position:center}.bgVideo{position:absolute;inset:0;display:block;width:100%;height:100vh;height:100lvh;opacity:0}
+.manifesto{position:relative;height:200vh}.manifestoSticky{position:sticky;top:0;height:100svh}.heroTopBar{position:absolute;top:45px;left:0;right:0;display:flex;justify-content:center;opacity:var(--hero-topbar-opacity,1)}.knownLogo{display:block;position:relative;flex:none}.knownLogo-header{width:61.3333px;height:46px}.knownLogo-footer{width:65px;height:48.75px}.knownLogo img{position:absolute;inset:0}
+.heroLine{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;padding:0 24px;font-family:var(--serif);font-weight:400;font-size:38px;line-height:38px;letter-spacing:-1.12px;text-align:center;text-shadow:0 1px 7.2px rgb(0 0 0 / 16%);pointer-events:none}em{font-weight:inherit}.scrollHint{position:fixed;bottom:48px;left:50%;transform:translateX(-50%);animation:scrollHintBob 1.8s ease-in-out infinite;transition:opacity .3s;pointer-events:none}.scrollHintHidden{opacity:0}@keyframes scrollHintBob{50%{transform:translate(-50%,12px)}}
+.hero{position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:40svh;padding:50px 24px 24px}.content{position:relative;z-index:0;display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;max-width:640px;text-align:center}.content:before{content:'';position:absolute;z-index:-1;top:-48px;bottom:-24px;left:50%;width:100vw;margin-left:-50vw;pointer-events:none;background:linear-gradient(180deg,transparent,#000 60%)}.heading{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:-.72px}.details{max-width:280px;font-size:16px;line-height:24px;letter-spacing:0}.details a{text-underline-offset:3px}.buttonRow{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;min-width:151.12px;padding:0 24px;border:0;border-radius:44px;background:#ffffff1a;color:white;font-size:16px;font-weight:500;line-height:24px;text-decoration:none;transition:background .2s}.buttonIcon{width:16px;height:16px;flex:none}.button:hover{background:#ffffff30}.buttonGhost{background:transparent;min-width:131px;padding:0 24px}
+.nextSection{background:#000;padding:48px 24px 96px}.campaignRows{display:flex;flex-direction:column;gap:40px;margin:0 auto;max-width:1080px}.campaignRow{display:flex;flex-direction:column;gap:16px;min-width:0}.sectionLabel{padding:16px 0;border-bottom:1px solid #ffffff33;font-size:16px;font-weight:500;line-height:24px;letter-spacing:-.32px}.sectionContent{min-width:0;display:flex;flex-direction:column}.beliefContent,.deliveryContent{gap:32px}.beliefHeading{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:-.72px}.bodyCopy{font-size:15.6px;line-height:24px;font-weight:400;color:#969696;letter-spacing:0}.bodyCopy p+p{margin-top:24px}.beliefContent>.bodyCopy,.deliveryContent>.bodyCopy{padding-bottom:24px}.stepsContent{gap:48px}.steps{list-style:none;display:flex;flex-direction:column;gap:12px;padding:0;margin:0}.step{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:16px;border-radius:16px;background:rgb(255 255 255 / 9%)}.step h3{font-size:16px;line-height:24px;font-weight:500;letter-spacing:0}.step p{font-size:13.6px;line-height:24px;letter-spacing:.14px;color:#969696;white-space:pre-line}.cities{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}.cities li{padding:7px 10px;border-radius:1000px;background:#ffffff1a;color:#fffffff2;font-size:16px;line-height:24px;letter-spacing:-.32px;white-space:nowrap}
+.closingBlock{display:flex;flex-direction:column;align-items:center;gap:32px;padding:96px 24px 68px;border-top:1px solid #ffffff33;background:#000;text-align:center}.closingHead{display:flex;flex-direction:column;align-items:center;gap:10px}.closingHead .heading{font-size:38px;line-height:38px;letter-spacing:-1.12px;font-weight:300}.closingHead p{max-width:194px;font-size:16px;font-weight:500;line-height:24px;letter-spacing:-.42px;color:#969696}.footerLogo{padding-top:32px}.footerInfo{max-width:600px;padding:16px 24px 24px}.footerInfo ul{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:20px;padding:0;margin:0;font-family:Switzer,var(--sans);font-size:14px;font-weight:500;line-height:20px;color:#ffffffe6}.footerInfo a{text-decoration:none}.footerInfo a:hover{text-decoration:underline;text-underline-offset:4px}.footerInfo .companyLinks{margin-top:8px;opacity:.6}.finePrint{margin:24px -12px 0;font-size:11.6px;line-height:18px;letter-spacing:.24px;color:#969696;max-width:315px}
+@media(min-width:768px){.heroLine{font-size:60px;line-height:62px}.hero{padding-bottom:64px}.content:before{bottom:-64px}.nextSection{padding:72px 48px 112px}.closingBlock{padding-top:112px}.closingHead .heading{font-size:48px;line-height:50px}}
+@media(min-width:1024px){.campaignRows{gap:64px}.campaignRow{display:grid;grid-template-columns:1fr 3fr;gap:32px;border-top:1px solid #ffffff33;padding-top:24px}.sectionLabel{padding:0;border:0}.beliefHeading{font-size:52px;line-height:56px}.bodyCopy{font-size:18px;line-height:28px;max-width:560px}.steps{display:grid;grid-template-columns:repeat(3,1fr)}.step p{white-space:normal}.step{min-height:188px}.heroLine{font-size:72px;line-height:74px}.nextSection{padding:96px 48px 112px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.manifesto{height:100svh;min-height:600px}.manifestoSticky{position:relative;height:100%}.heroLine,.heroTopBar{opacity:1!important}.scrollHint{display:none}.sequenceViewport{position:absolute;height:100%}.bgVideo{height:100%}}
+/* Keep the keyboard-only shortcut hidden even in full-section captures. */
+.skipLink{opacity:0;pointer-events:none}.skipLink:focus{opacity:1;pointer-events:auto}
+
+/* Arqe-inspired entrance: 30px rise, staggered lines, soft ease-out. */
+.heroEnter{display:inline-block}.heroLogoEnter{display:block}
+@keyframes contentRise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){
+ .heroEnter{animation:contentRise 1.2s cubic-bezier(.25,1,.5,1) both}
+ .heroLogoEnter{animation-delay:.1s}.heroEnterFirst{animation-delay:.2s}.heroEnterSecond{animation-delay:.3s}.heroEnterThird{animation-delay:.4s}
+ .revealItem{opacity:0;transform:translateY(24px)}
+ .revealItem.isRevealed{transition:opacity 1.2s cubic-bezier(.25,1,.5,1),transform 1.2s cubic-bezier(.25,1,.5,1);transition-delay:var(--reveal-delay,0ms)}
+ .revealItem.isRevealed{opacity:1;transform:translateY(0)}
+}
+
+@media(min-width:1024px){.hero .heading{font-size:52px;line-height:56px;letter-spacing:-.72px}}
+
+/* Figma footer study: warm image fades in low, softened beneath a dark scrim. */
+.closingBlock{position:relative;isolation:isolate;overflow:hidden}
+.footerBackdrop{position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;background:#000}
+.footerBackdrop img{position:absolute;left:-10%;top:18%;width:120%;height:118%;object-fit:cover;object-position:center 67%;max-width:none;filter:blur(38.425px);opacity:.754;mask-image:linear-gradient(to bottom,transparent 0%,transparent 26%,#000 80%)}
+.footerBackdrop::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.55) 46%,rgba(0,0,0,.3) 100%)}
+.footerBackdrop{z-index:0}
+.closingBlock > :not(.footerBackdrop){position:relative;z-index:1}
+
+/* Continuous camera playback: the original art is composited in two GPU layers. */
+.roseViewport{overflow:hidden;container-type:size}
+.rosePoster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.roseStage{position:absolute;left:50%;top:50%;width:max(100cqw,calc(100cqh * 1880 / 1080));aspect-ratio:1880 / 1080;transform:translate(-50%,-50%);opacity:0}
+.roseStage[data-ready="true"]{opacity:1}
+.rosePlane{position:absolute;left:0;top:0;height:auto;max-width:none;transform-origin:0 0;will-change:transform}
+.roseBackground{width:120.5106383%}.roseForeground{width:63.82978723%}
+@media(prefers-reduced-motion:reduce){.rosePlane{will-change:auto}.roseStage{display:none}}
+
+/* Reference edge photos: one continuous backdrop, with a black reading area. */
+.postHero{position:relative;isolation:isolate;overflow:clip;background:#000}
+/* Feather the edge photos into the hero; keep the fade below the reading layer. */
+.postHero::before{content:'';position:absolute;top:0;left:0;right:0;height:clamp(140px,20svh,220px);z-index:1;pointer-events:none;background:linear-gradient(180deg,#000 0%,rgb(0 0 0 / 98%) 12%,rgb(0 0 0 / 80%) 32%,rgb(0 0 0 / 35%) 60%,rgb(0 0 0 / 8%) 82%,transparent 100%)}
+.sidePhotoTrack{position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none}
+.sidePhotoStage{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;pointer-events:none}
+.sidePhoto{position:absolute;top:100%;left:0;width:23vw;max-width:300px;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:14px;opacity:.42;filter:blur(2px);will-change:transform}
+.sidePhotoStage::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgb(0 0 0 / 15%) 0%,rgb(0 0 0 / 75%) 10%,rgb(0 0 0 / 97%) 20%,#000 30%,#000 70%,rgb(0 0 0 / 97%) 80%,rgb(0 0 0 / 75%) 90%,rgb(0 0 0 / 15%) 100%)}
+.postHero>.nextSection{position:relative;z-index:1;background:transparent}
+.step,.cities li{-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+@media(max-width:700px){.sidePhoto{width:34vw;opacity:.32}.sidePhotoStage::after{background:linear-gradient(90deg,rgb(0 0 0 / 40%),rgb(0 0 0 / 88%) 8%,#000 24%,#000 76%,rgb(0 0 0 / 88%) 92%,rgb(0 0 0 / 40%))}}
+@media(prefers-reduced-motion:reduce){.sidePhoto{will-change:auto}}
