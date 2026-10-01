@@ -4,6 +4,10 @@ A hobby project for sending a little thought — a real rose.
 
 - Live site: https://known-roses.vercel.app/
 - Recipient preview: https://known-roses.vercel.app/rose/claim
+- Cityscape alternative: https://known-roses.vercel.app/cityscape
+- Cityscape recipient preview: https://known-roses.vercel.app/cityscape/rose/claim
+
+Both options share the same rose, camera motion and checkout. The original sunset remains the default. Delivery locations are San Francisco, San Diego, Los Angeles, Orange County, Seattle, Chicago, Denver, Austin and Dallas.
 
 ## Run locally
 
